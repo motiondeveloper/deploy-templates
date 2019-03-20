@@ -65,7 +65,7 @@ syncFoldersWithPrompts () {
     # Sync folders
     clear
     h2 "Syncing..."
-    rsync -ah --progress --delete --exclude=".*" --delete-excluded "${fromPath}" "${intoPath}"
+    rsync -ahq --progress --delete --exclude=".*" --delete-excluded "${fromPath}" "${intoPath}"
 
     # Give confirmation
     emptyLine
@@ -122,6 +122,8 @@ createInstaller () {
     continuePrompt "continue"
     
     if [[ ${copyToMac} == "y" ]]; then
+        clear
+        h1 "Copying into Mac installers folder..."
         macInstallerFolder="/Volumes/01_SBS_2019/03_TEMPLATES/MOTION/Social_Video_Premiere_Template/Mac/"
         syncFoldersWithPrompts "./dist/${outputFile}" "${macInstallerFolder}"
     fi
