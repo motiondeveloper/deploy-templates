@@ -102,9 +102,9 @@ createInstaller () {
     outputFile="SBS ${templateName} Templates Installer v${versionNumber}.app"
 
     # Tell user what's about to happen
-    emptyLine
     h1 "Creating ${templateName} Installer:"
     echo "${outputFile}"
+    emptyLine
     h2 "Templates:"
     echo "${templates}"
     h2 "Changelog"
@@ -114,10 +114,12 @@ createInstaller () {
     continuePrompt "create installer"
 
     # Create Installer
-    emptyLine
+    clear
     h1 "Creating installer..."
     platypus -a "${appName}" -o "${appType}" -i "${icon}" -V "${version}" -u "${author}" -f "${bundledFiles}" -I "${indentifier}" -R "${script}" "./dist/${outputFile}"
     emptyLine
+    h1 "Finished creating installer!"
+    continuePrompt "continue"
     
     if [[ ${copyToMac} == "y" ]]; then
         macInstallerFolder="/Volumes/01_SBS_2019/03_TEMPLATES/MOTION/Social_Video_Premiere_Template/Mac/"
