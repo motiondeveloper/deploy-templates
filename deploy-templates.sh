@@ -2,6 +2,9 @@
 
 ### Comand Line Interface for deploying new template files
 
+# Exit if any errors thrown
+set -e
+
 # Styling Variables
 
 bold=$(tput bold)
@@ -47,6 +50,7 @@ syncFoldersWithPrompts () {
     emptyLine
     emptyLine
     h2 "A dry run will be performed to ensure no files are synced incorrectly."
+    emptyLine
     continuePrompt "sync"
 
     # Sync dry run
@@ -57,6 +61,7 @@ syncFoldersWithPrompts () {
     emptyLine
     emptyLine
     h1 "Please review the dry run output and check for errors!"
+    emptyLine
     continuePrompt "sync"
 
     # Sync folders
