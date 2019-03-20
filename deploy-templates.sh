@@ -50,22 +50,20 @@ syncFoldersWithPrompts () {
     emptyLine
     emptyLine
     h2 "A dry run will be performed to ensure no files are synced incorrectly."
-    emptyLine
-    continuePrompt "sync"
+    continuePrompt "continue"
 
     # Sync dry run
-    emptyLine
+    clear
     rsync -ahv --progress --delete --dry-run --exclude=".*" --delete-excluded "${fromPath}" "${intoPath}"
 
     # Ask for confirmation of dry run before syncing
     emptyLine
     emptyLine
     h1 "Please review the dry run output and check for errors!"
-    emptyLine
     continuePrompt "sync"
 
     # Sync folders
-    emptyLine
+    clear
     h2 "Syncing..."
     rsync -ah --progress --delete --exclude=".*" --delete-excluded "${fromPath}" "${intoPath}"
 
@@ -181,7 +179,7 @@ if [[ ${deploySocial} == "y" ]]; then
     clear
     h1 "Deploying Social..."
     continuePrompt "continue"
-    emptyLine
+    clear
 
     socialTemplatesPath="./src/social/templates/"
 
@@ -214,6 +212,7 @@ if [[ ${deployNews} == "y" ]]; then
     h1 "Deploying News..."
     continuePrompt "continue"
     emptyLine
+    clear
 
     newsTemplatesPath="./src/news/templates/"
 
@@ -229,5 +228,7 @@ if [[ ${deployNews} == "y" ]]; then
     fi
 fi
 
+clear
 emptyLine
 h1 "Finished deploying templates!"
+exit
