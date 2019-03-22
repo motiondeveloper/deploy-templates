@@ -215,7 +215,7 @@ As this project is specific to the needs of deploying templates at SBS, many of 
 <div align="center">
 <p>
 
-### 🎉 Happy templating! 🤘
+### 🎉 Happy templating! 🤙
 
 Created by [Tim Haywood](https://timhaywood.com.au) and [Danny Jenkins](https://dannyjenkins.com.au) for [SBS Australia](https://sbs.com.au) 
 
