@@ -5,7 +5,7 @@
 
 <div align="center">
 
-<img src="http://www.pvhc.net/img168/rkfpazedimqycrrfimxh.png" alt="react beautiful dnd logo" style="width:126px;height:auto;"/>
+![Installer Icon](docs/static/installer-icon.png)
 
 # Deploy Templates CLI
 
