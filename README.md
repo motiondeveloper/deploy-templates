@@ -139,3 +139,9 @@ Any updates made to the template files should be documented in the `index.html` 
     ```
 
 3. Follow the prompts to deploy the templates
+
+[Back To Top ↑]
+
+## How it Works
+
+It just does! 😬
