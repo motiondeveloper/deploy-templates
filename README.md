@@ -200,3 +200,28 @@ It does this based on input given as answers to a list of specified questions, s
 
 ## Contributing
 
+Changes can be made by cloning this project locally, creating a new fork, and then creating a pull request to publish the changes to the master.
+
+As this project is specific to the needs of deploying templates at SBS, many of the commands are dependant upon having various SBS specific drives and locations accesible.
+
+> **⚠️ Please Note**
+> 
+> Due to their large files size, the templates and installer apps are not included as tracked files in this repo. This means to do any testing template files must be copied from elsewhere into the correct directories.
+
+[Back To Top ↑]
+
+----
+
+<div align="center">
+<p>
+
+### 🎉 Happy templating! 🤘
+
+Created by [Tim Haywood](https://timhaywood.com.au) and [Danny Jenkins](https://dannyjenkins.com.au) for [SBS Australia](https://sbs.com.au) 
+
+Licensed under the terms of the [MIT License](LICENSE)
+
+</p>
+</div>
+
+---
