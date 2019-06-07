@@ -1,5 +1,5 @@
 <!-- Links -->
-[Platypus]: https://sveinbjorn.org/platytpus
+[Platypus]: https://sveinbjorn.org/platypus
 [Platypus Docs]: https://sveinbjorn.org/files/manpages/PlatypusDocumentation.html
 [Back To Top ↑]: #overview
 
