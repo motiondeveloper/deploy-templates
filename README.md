@@ -1,5 +1,5 @@
 <!-- Links -->
-[Platypus]: https://sveinbjorn.org/platytpus
+[Platypus]: https://sveinbjorn.org/platypus
 [Platypus Docs]: https://sveinbjorn.org/files/manpages/PlatypusDocumentation.html
 [Back To Top ↑]: #overview
 
@@ -215,7 +215,7 @@ As this project is specific to the needs of deploying templates at SBS, many of 
 <div align="center">
 <p>
 
-### 🎉 Happy templating! 🤘
+### 🎉 Happy templating! 🤙
 
 Created by [Tim Haywood](https://timhaywood.com.au) and [Danny Jenkins](https://dannyjenkins.com.au) for [SBS Australia](https://sbs.com.au) 
 
