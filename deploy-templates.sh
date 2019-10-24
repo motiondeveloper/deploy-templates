@@ -95,7 +95,7 @@ createInstaller () {
     appType="Progress Bar"
     icon="${iconFile}"
     verion="${versionNumber}"
-    author="SBS Creatove"
+    author="SBS Creative"
     bundledFiles="${changelog}|${templates}|${configFile}"
     indentifier="au.com.sbs"
     script="${baseScript}"
@@ -144,93 +144,64 @@ emptyLine
 continuePrompt "start"
 clear
 
-# Social Template Inputs
-read -p "${bold}Deploy social templates?${normal} [y/n]: " deploySocial
+# Loop through directories (template packages) in src
+
+for directory in src/*/ ; do
+
+  packageName="$(basename ${directory})"
+
+  # Ask for template properties
+
+  read -p "${bold}Deploy ${packageName} templates?${normal} [y/n]: " deployPackage
 
     # Input Social Options
-    if [[ "${deploySocial}" == "y" ]]; then
-        read -p "   Export new installer app? [y/n]: " createSocialInstaller
+    if [[ "${deployPackage}" == "y" ]]; then
+        read -p "   Export new installer app? [y/n]: " createInstaller
 
-        if [[ "${createSocialInstaller}" == "y" ]]; then
-            read -p "   Social installer version number [x.x.x]: " socialVersion
-            read -p "   Copy Installer to Mac delivery folder? [y/n]: " socialMacSync
+        if [[ "${createInstaller}" == "y" ]]; then
+            read -p "   Installer version number [x.x.x]: " versionNumber
+            read -p "   Copy Installer to Mac delivery folder? [y/n]: " macSync
         fi
 
-        read -p "   Sync social templates into broadcast? [y/n]: " socialBroadcastSync
-        read -p "   Sync social templates with Windows folder? [y/n]: " socialWindowsSync
+        read -p "   Sync templates into broadcast? [y/n]: " broadcastSync
+        read -p "   Sync templates with Windows folder? [y/n]: " windowsSync
     fi
 
-# News Template Inputs
-read -p "${bold}Deploy news templates?${normal} [y/n]: " deployNews
+  # Create installer and copy to delivery locations
 
-    # Input news Options
-    if [[ "${deployNews}" == "y" ]]; then
-        read -p "   Export news installer app? [y/n]: " createNewsInstaller
-        
-        if [[ "${createNewsInstaller}" == "y" ]]; then
-            read -p "   News installer version number [x.x.x]: " newsVersion
-            read -p "   Copy Installer to Mac delivery folder? [y/n]: " newsMacSync
-        fi
-
-        read -p "   Sync news templates with Windows folder? [y/n]: " newsWindowsSync
-    fi
-
-# Deploy Social
-
-if [[ ${deploySocial} == "y" ]]; then
+  if [[ ${deployPackage} == "y" ]]; then
 
     # Feedback
     clear
-    h1 "Deploying Social..."
+    h1 "Deploying ${packageName}..."
     continuePrompt "continue"
     clear
 
-    socialTemplatesPath="./src/social/templates/"
+    templatesPath="./src/${packageName}/templates/"
 
-    if [[ ${createSocialInstaller} == "y" ]]; then
-        createInstaller "social" "${socialVersion}" "${socialMacSync}"
+    if [[ ${createInstaller} == "y" ]]; then
+        createInstaller "${packageName}" "${versionNumber}" "${macSync}"
     fi
 
-    if [[ ${socialBroadcastSync} == "y" ]]; then
+    if [[ ${broadcastSync} == "y" ]]; then
 
         h2 "Deploying to broadcast folder"
-        broadcastTemplatePath="/Volumes/01_SBS_2019/03_TEMPLATES/MOTION/_MOGRT Releases/Social/"
-        syncFoldersWithPrompts "${socialTemplatesPath}" "${broadcastTemplatePath}"
+        broadcastTemplatePath="/Volumes/01_SBS_2019/03_TEMPLATES/MOTION/_MOGRT Releases/${packageName}/"
+        syncFoldersWithPrompts "${templatesPath}" "${broadcastTemplatePath}"
     fi
 
-    if [[ ${socialWindowsSync} == "y" ]]; then
+    if [[ ${windowsSync} == "y" ]]; then
 
         h2 "Deploying to Windows folder"
-        windowsSocialTemplatesPath="/Volumes/01_SBS_2019/03_TEMPLATES/MOTION/Social_Video_Premiere_Template/Windows/SBS Social/"
-        syncFoldersWithPrompts "${socialTemplatesPath}" "${windowsSocialTemplatesPath}"
+        windowsTemplatesPath="/Volumes/01_SBS_2019/03_TEMPLATES/MOTION/Social_Video_Premiere_Template/Windows/SBS ${packageName}/"
+        syncFoldersWithPrompts "${templatesPath}" "${windowsTemplatesPath}"
     fi
 
-fi
+  fi
 
-# Deploy News
+  clear
 
-if [[ ${deployNews} == "y" ]]; then
-
-    # Feedback
-    clear
-    h1 "Deploying News..."
-    continuePrompt "continue"
-    emptyLine
-    clear
-
-    newsTemplatesPath="./src/news/templates/"
-
-    if [[ ${createNewsInstaller} == "y" ]]; then
-        createInstaller "news" "${newsVersion}" "${newsMacSync}"
-    fi
-
-    if [[ ${newsWindowsSync} == "y" ]]; then
-
-        h2 "Deploying to Windows folder"
-        windowsNewsTemplatesPath="/Volumes/01_SBS_2019/03_TEMPLATES/MOTION/Social_Video_Premiere_Template/Windows/SBS News/"
-        syncFoldersWithPrompts "${newsTemplatesPath}" "${windowsNewsTemplatesPath}"
-    fi
-fi
+done
 
 clear
 emptyLine
