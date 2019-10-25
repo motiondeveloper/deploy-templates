@@ -31,15 +31,23 @@ These steps are done based on the files in the folder structure, as well as user
 
 ## Contents
 
-- [Dependancies](#dependancies)
-- [Updating the files](#updating-the-files)
-  - [Templates](#updating-the-templates)
-  - [Changelogs](#updating-the-changelogs)
-- [Using the CLI](#using-the-cli)
-- [How it Works](#how-it-works)
-  - [The Installer Apps](#the-installer-apps)
-  - [The Installer Script](#the-installer-script)
-  - [The Deploy Templates CLI](#the-deploy-templates-cli)
+- [Deploy Templates CLI](#deploy-templates-cli)
+  - [Overview](#overview)
+  - [Contents](#contents)
+  - [Dependancies](#dependancies)
+  - [Updating the files](#updating-the-files)
+    - [Creating new packages](#creating-new-packages)
+    - [Updating the templates](#updating-the-templates)
+    - [Updating the changelogs](#updating-the-changelogs)
+  - [Using the CLI](#using-the-cli)
+  - [How it Works](#how-it-works)
+    - [The Installer Apps](#the-installer-apps)
+      - [Installing the Platypus CLI](#installing-the-platypus-cli)
+    - [The Installer Script](#the-installer-script)
+      - [Bash Scripting Resources:](#bash-scripting-resources)
+    - [The Deploy Templates CLI](#the-deploy-templates-cli)
+  - [Contributing](#contributing)
+    - [🎉 Happy templating! 🤙](#%f0%9f%8e%89-happy-templating-%f0%9f%a4%99)
 
 [Back To Top ↑]
 
@@ -92,7 +100,7 @@ The installers, changelog and templates are versioned according to the [Semantic
 
 ### Creating new packages
 
-The CLI is currently configured to deploy two template packages, **SBS News** and **SBS Social**. A new package may be added by duplicating an existing package, renaming it, and modifying the following files:
+A new package may be added by duplicating an existing package in `src/`, renaming it, and modifying the following files:
 
 - `package-name/changelog/index.html`
 
@@ -104,11 +112,15 @@ The CLI is currently configured to deploy two template packages, **SBS News** an
 
 - `package-name/installer.config`
 
-    This contains the package specific configuration for it's installer, and the `folderName` variable in this file should be updated to reflect the folder name of the installed templates, e.g. `SBS Radio`.
+    This contains the package specific configuration for the installer.
+    
+    The `folderName` variable in this file should be updated to reflect the name of the subfolder the templates will be installed in, e.g. `Motion Graphics Templates/SBS Radio`.
 
 - `package-name/templates/`
 
-    The template files for the new package should be placed into this folder.
+    The template files `(.mogrt)` for the new package should be placed into this folder.
+
+The CLI loops through each of the subfolders in `src/`, prompting for the deployment options of each package.
 
 </p>
 </details>
@@ -191,10 +203,6 @@ The script can be found at `src/install-mogrt.bash` and is well documented with 
 The Deploy Templates CLI is another [bash script](#the-installer-script), `deploy-templates.sh`, that creates the [installer apps](#the-installer-apps) using the Platypus CLI. It also copies these installers into a couple of different locations, as well as syncs the individual template files into other locations for uses not running the installer apps.
 
 It does this based on input given as answers to a list of specified questions, such as which packages to deploy, installer version numbers, and whether to sync the individual template files.
-
-> **⚠️ Please Note**
-> 
-> At the moment, each package is hardcoded into the script in such a way that, if you were to [add a new    template package](#creating-new-packages) you would need to modify `deploy-templates.sh` with new prompts and variables. The plan is to create all of the prompts according to the package folders in `src/` so that packages can added and removed without modifying the script.
 
 [Back To Top ↑]
 
